@@ -38,6 +38,13 @@ spring:
           filters:
             - RewritePath=/patient/(?<path>.*), /$\{path}
 
+        - id: patient-gql
+          uri: lb://patient-gql
+          predicates:
+            - Path=/patient-gql/**
+          filters:
+            - RewritePath=/patient-gql/(?<path>.*), /$\{path}
+
 #
 #        - id: the-zecter.gomicroser
 #          uri: lb://the-zecter.gomicroser
@@ -64,7 +71,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:7449/eureka
+      defaultZone: http://localhost:8761/eureka
   instance:
     hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

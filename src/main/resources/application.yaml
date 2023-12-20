@@ -31,6 +31,14 @@ spring:
           filters:
             - RewritePath=/opd/(?<path>.*), /$\{path}
 
+#        kotlin
+        - id: opdkt-service
+          uri: lb://opdkt-service
+          predicates:
+            - Path=/opdkt/**
+          filters:
+            - RewritePath=/opdkt/(?<path>.*), /$\{path}
+
         - id: patient-service
           uri: lb://patient-service
           predicates:
